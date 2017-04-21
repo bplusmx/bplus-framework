@@ -23,6 +23,7 @@
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       bplus-framework
  * Domain Path:       /languages
+ * Bitbucket Plugin URI: https://bitbucket.org/bplusmx/bplus-framework
  */
 
 // If this file is called directly, abort.
