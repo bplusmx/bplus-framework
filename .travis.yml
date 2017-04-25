@@ -39,6 +39,6 @@ before_script:
   - bash wp-tests/bin/install-wp-tests.sh test root '' localhost $WP_VERSION
 
 script:
+  - if [[ "$SNIFF" == "1" ]]; then $PHPCS_DIR/scripts/phpcs --extensions=php -p . --standard=./codesniffer.ruleset.xml; fi
   - phpunit
   - cd wp-tests/spec && bundle exec rspec test.rb
-  - if [[ "$SNIFF" == "1" ]]; then $PHPCS_DIR/scripts/phpcs --extensions=php -p . --standard=./codesniffer.ruleset.xml; fi
