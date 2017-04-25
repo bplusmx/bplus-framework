@@ -14,13 +14,11 @@ php:
   - 5.4
 
 env:
-  - WP_PROJECT_TYPE=plugin WP_VERSION=latest WP_MULTISITE=0 WP_TEST_URL=http://localhost:12000 WP_TEST_USER=test WP_TEST_USER_PASS=test
+  - WP_PROJECT_TYPE=plugin WP_VERSION=latest WP_MULTISITE=0 WP_TEST_URL=http://localhost:12000 WP_TEST_USER=test WP_TEST_USER_PASS=test SNIFF=1
 
 matrix:
   allow_failures:
     - php: nightly
-  include:
-    env: SNIFF=1
 
 before_install:
   - if [[ "$SNIFF" == "1" ]]; then export PHPCS_DIR=/tmp/phpcs; fi
@@ -43,4 +41,4 @@ before_script:
 script:
   - phpunit
   - cd wp-tests/spec && bundle exec rspec test.rb
-  - if [[ "$SNIFF" == "1" ]]; then $PHPCS_DIR/scripts/phpcs -p . --standard=./codesniffer.ruleset.xml; fi
+  - if [[ "$SNIFF" == "1" ]]; then $PHPCS_DIR/scripts/phpcs --extensions=php -p . --standard=./codesniffer.ruleset.xml; fi
