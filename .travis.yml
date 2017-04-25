@@ -19,6 +19,7 @@ env:
 matrix:
   allow_failures:
     - php: nightly
+  include:
     env: SNIFF=1
 
 before_install:
