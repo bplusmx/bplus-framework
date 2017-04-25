@@ -19,14 +19,27 @@ env:
 matrix:
   allow_failures:
     - php: nightly
+    env: SNIFF=1
+
+before_install:
+  - if [["$SNIFF" == "1"]]; export PHPCS_DIR=/tmp/phpcs; fi
+  - if [["$SNIFF" == "1"]]; export SNIFFS_DIR=/tmp/sniffs; fi
+  # Install PHP CodeSniffer
+  - if [["$SNIFF" == "1"]]; then git clone -b master --depth 1 https://github.com/squizlabs/PHP_CodeSniffer.git $PHPCS_DIR; fi
+  # Install WordPress Coding Standards
+  - if [["$SNIFF" == "1"]]; then git clone -b master --depth 1 https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git $SNIFFS_DIR; fi
+  # Set PHP CodeSniffer install path to WordPress Coding Standards
+  - if [["$SNIFF" == "1"]]; then $PHPCS_DIR/scripts/phpcs --config-set installed_paths $SNIFFS_DIR; fi
+  # Refresh paths
+  - if [["$SNIFF" == "1"]]; then phpenv rehash; fi
 
 before_script:
   # Install composer packages before trying to activate themes or plugins
   # - composer install
-
   - git clone https://github.com/Seravo/wordpress-test-template wp-tests
   - bash wp-tests/bin/install-wp-tests.sh test root '' localhost $WP_VERSION
 
 script:
   - phpunit
   - cd wp-tests/spec && bundle exec rspec test.rb
+  - if [["$SNIFF" == "1"]]; then $PHPCS_DIR/scripts/phpcs -p . --standard=WordPress; fi
