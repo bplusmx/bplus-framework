@@ -1,4 +1,12 @@
 <?php
+/**
+ * Tests bootstrap file
+ *
+ * @link       http://bplus.mx
+ * @since      1.0.0
+ *
+ * @package    Bplus_Framework
+ */
 
 $_tests_dir = getenv( 'WP_TESTS_DIR' );
 
