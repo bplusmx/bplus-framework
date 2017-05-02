@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -44,14 +43,32 @@ class Bplus_Framework_Admin {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of this plugin.
-	 * @param      string    $version    The version of this plugin.
+	 * @param      string $plugin_name       The name of this plugin.
+	 * @param      string $version    The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 
+		add_filter( 'plugin_row_meta', array( $this, 'plugin_list_links' ), 10, 2 );
+
+	}
+
+	/**
+	 * Show a special link on plugin list
+	 *
+	 * @param array  $links Link list.
+	 * @param string $file Filename.
+	 * @return array
+	 */
+	public function plugin_list_links( $links, $file ) {
+		// We only add the link on this plugin.
+		if ( 'bplus-framework.php' === basename( $file ) ) {
+			$links[] = '<a href="' . admin_url( 'admin.php?page=bplus-options' ) . '">' . __( 'Settings', 'bplus-framework' ) . '</a>';
+		}
+
+		return $links;
 	}
 
 	/**
