@@ -39,10 +39,10 @@ before_script:
   # Install composer packages before trying to activate themes or plugins
   # - composer install
   - git clone https://github.com/Seravo/wordpress-test-template wp-tests
-  - /bin/bash wp-tests/bin/install-wp-tests.sh test root '' localhost $WP_VERSION
+  - bash wp-tests/bin/install-wp-tests.sh test root '' localhost $WP_VERSION
 
 script:
+  - phantomjs tests/phantom.js
   - if [[ "$SNIFF" == "1" ]]; then $PHPCS_DIR/scripts/phpcs --extensions=php --report=summary --standard=./codesniffer.ruleset.xml .; fi
   - phpunit
-  - phantomjs tests/phantom.js
   - cd wp-tests/spec && bundle exec rspec test.rb
