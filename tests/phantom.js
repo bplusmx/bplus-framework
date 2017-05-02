@@ -8,7 +8,7 @@ page.viewportSize = { width: 1024, height: 768 };
 page.clipRect = { top: 0, left: 0, width: 1024, height: 768 };
 
 //the rest of the code is the same as the previous example
-page.open('http://e-acapulco.com/', function() {
-  page.render('e-acapulco.png');
+page.open('http://localhost:12000', function() {
+  page.render('webpage.png');
   phantom.exit();
 });
