@@ -6,6 +6,9 @@ language: php
 notifications:
   on_success: never
   on_failure: change
+  slack:
+    rooms:
+      - bplusmx:bZQWMVAAxexYiEkXC8h0kYWV#notifications
 
 php:
   - nightly # PHP 7.0
@@ -39,6 +42,7 @@ before_script:
   - bash wp-tests/bin/install-wp-tests.sh test root '' localhost $WP_VERSION
 
 script:
-  - if [[ "$SNIFF" == "1" ]]; then $PHPCS_DIR/scripts/phpcs --extensions=php -p --standard=./codesniffer.ruleset.xml bplus-framework.php; fi
+  - if [[ "$SNIFF" == "1" ]]; then $PHPCS_DIR/scripts/phpcs --extensions=php --report=summary --standard=./codesniffer.ruleset.xml .; fi
   - phpunit
+  - phantomjs tests/phantom.js
   - cd wp-tests/spec && bundle exec rspec test.rb
