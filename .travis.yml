@@ -42,7 +42,5 @@ before_script:
   - bash wp-tests/bin/install-wp-tests.sh test root '' localhost $WP_VERSION
 
 script:
-  - phantomjs tests/phantom.js
   - if [[ "$SNIFF" == "1" ]]; then $PHPCS_DIR/scripts/phpcs --extensions=php --report=summary --standard=./codesniffer.ruleset.xml .; fi
   - phpunit
-  - cd wp-tests/spec && bundle exec rspec test.rb
