@@ -45,4 +45,4 @@ script:
   - phantomjs tests/phantom.js
   - if [[ "$SNIFF" == "1" ]]; then $PHPCS_DIR/scripts/phpcs --extensions=php --report=summary --standard=./codesniffer.ruleset.xml .; fi
   - phpunit
-  - cd wp-tests/spec && bundle exec rspec test.rb
+  #- cd wp-tests/spec && bundle exec rspec test.rb
