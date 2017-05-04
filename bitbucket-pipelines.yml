@@ -10,14 +10,22 @@ pipelines:
     - step:
         script:
           # Update apt-get packages
+          - apt-get update
+
           # Install the required packages for the running CI tests
-          - apt-get update && apt-get -yqqf install vim git wget zip unzip subversion mysql-client libmcrypt-dev libmysqlclient-dev --fix-missing
+          - apt-get -yqqf install vim git wget zip unzip subversion mysql-client libmcrypt-dev libmysqlclient-dev --fix-missing
+
+          # Install mysql driver
+          - docker-php-ext-install mysqli pdo_mysql mbstring
+
+          # PHP extensions
+          - docker-php-ext-enable mysqli pdo_mysql mbstring xdebug
 
           # Install Xdebug
           #- pecl install xdebug
 
           # Install WP test suite
-          - bash bin/install-wp-tests.sh test root '' localhost latest
+          - bash bin/install-wp-tests.sh test root 'test' 127.0.0.1 latest
 
           # Download composer
           - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -28,3 +36,13 @@ pipelines:
 
           # Run uni tests
           - vendor/bin/phpunit
+        services:
+          - mysql
+
+definitions:
+  services:
+    mysql:
+      image: mysql
+      environment:
+        MYSQL_DATABASE: test
+        MYSQL_ROOT_PASSWORD: 'test'
