@@ -25,7 +25,7 @@ pipelines:
           - docker-php-ext-enable mysqli pdo_mysql mbstring xdebug
 
           # Install WP test suite
-          - bash bin/install-wp-tests.sh test root 'test' 127.0.0.1 latest
+          - bash bin/install-wp-tests.sh test root 'test' 127.0.0.1 latest true
 
           # Download composer
           - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
