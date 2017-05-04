@@ -24,11 +24,6 @@ pipelines:
           # PHP extensions
           - docker-php-ext-enable mysqli pdo_mysql mbstring xdebug
 
-          # Download PHP CodeSniffer and WP Coding Standards
-          - git clone -b master --depth 1 https://github.com/squizlabs/PHP_CodeSniffer.git $PHPCS_DIR
-          - git clone -b master --depth 1 https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git $SNIFFS_DIR
-          - $PHPCS_DIR/scripts/phpcs --config-set installed_paths $SNIFFS_DIR
-
           # Install WP test suite
           - bash bin/install-wp-tests.sh test root 'test' 127.0.0.1 latest true
 
@@ -38,6 +33,17 @@ pipelines:
 
           # Install PHP Unit
           - composer require phpunit/phpunit
+
+          # Download PHP CodeSniffer and WP Coding Standards
+          #- git clone -b master --depth 1 https://github.com/squizlabs/PHP_CodeSniffer.git $PHPCS_DIR
+          - git clone -b master --depth 1 https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git $SNIFFS_DIR
+          - composer global require "squizlabs/php_codesniffer=*"
+
+          # Set PHP CS standards
+          - vendor/bin/phpcs --config-set installed_paths $SNIFFS_DIR
+
+          # Check coding standards
+          - vendor/bin/phpcs --extensions=php --report=summary --standard=./codesniffer.ruleset.xml .
 
           # Run uni tests
           - vendor/bin/phpunit
