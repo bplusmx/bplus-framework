@@ -7,7 +7,7 @@
 	<description>Standard rules to check for WordPress development.</description>
 
 	<arg name="extensions" value="php" />
-	<arg value="s" />
+	<arg value="q" />
 	<arg value="p" />
 
 	<exclude-pattern>/index.php</exclude-pattern>
