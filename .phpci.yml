@@ -10,7 +10,7 @@ test:
     php_mess_detector:
         allow_failures: true
     php_code_sniffer:
-        standard: "./codesniffer.ruleset.xml"
+        standard: "WordPress"
         allow_failures: 10
 #    php_cpd:
 #        allow_failures: false
