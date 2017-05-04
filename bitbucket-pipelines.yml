@@ -9,10 +9,22 @@ pipelines:
   default:
     - step:
         script:
-          - apt-get update && apt-get install -y unzip
-          - apt-get install -y subversion
+          # Update apt-get packages
+          # Install the required packages for the running CI tests
+          - apt-get update && apt-get -yqqf install vim git wget zip unzip subversion mysql-client libmcrypt-dev libmysqlclient-dev --fix-missing
+
+          # Install Xdebug
+          #- pecl install xdebug
+
+          # Install WP test suite
           - bash bin/install-wp-tests.sh test root '' localhost latest
+
+          # Download composer
           - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
           # - composer install
+
+          # Install PHP Unit
           - composer require phpunit/phpunit
+
+          # Run uni tests
           - vendor/bin/phpunit
