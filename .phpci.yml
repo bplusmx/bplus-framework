@@ -1,0 +1,28 @@
+build_settings:
+    ignore:
+        - "spec"
+        - "includes"
+        - "bin"
+
+setup:
+
+test:
+    php_mess_detector:
+        allow_failures: true
+    php_code_sniffer:
+        standard: "WordPress"
+        allow_failures: false
+    php_cpd:
+        allow_failures: false
+    php_loc:
+        allow_failures: true
+    php_unit:
+        config:
+            - "codesniffer.ruleset.xml"
+        allow_failures: false
+
+#success:
+#    package_build:
+#        directory: "./builds/"
+#        filename: "category-pages-shortcodes-latest"
+#        format: zip
