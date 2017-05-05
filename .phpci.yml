@@ -6,8 +6,9 @@ build_settings:
 
 setup:
     shell:
-        command: "git clone https://github.com/luisabarca/wordpress-test-template.git wp-tests"
-        command: "bash wp-tests/bin/install-wp-tests.sh test root '' localhost latest"
+        command:
+            - "git clone https://github.com/luisabarca/wordpress-test-template.git wp-tests"
+            - "bash wp-tests/bin/install-wp-tests.sh test root '' localhost latest"
 
 test:
     php_mess_detector:
