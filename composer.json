@@ -1,0 +1,16 @@
+{
+    "name": "luisabarca/bplus-framework",
+    "description": "bPlus Framework",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Luis Abarca",
+            "email": "luisabarca@gmail.com"
+        }
+    ],
+    "minimum-stability": "beta",
+    "require": {},
+    "require-dev": {
+        "lucatume/wp-browser": "^1.19"
+    }
+}
