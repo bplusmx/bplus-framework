@@ -6,9 +6,6 @@ build_settings:
 
 setup:
     shell:
-        - apt-get update
-        # Install the required packages for the running CI tests
-        - apt-get -yqqf install vim git wget zip unzip subversion mysql-client libmcrypt-dev libmysqlclient-dev --fix-missing
         - "git clone https://github.com/luisabarca/wordpress-test-template.git wp-tests"
         - "bash wp-tests/bin/install-wp-tests.sh test root '' localhost latest"
 
