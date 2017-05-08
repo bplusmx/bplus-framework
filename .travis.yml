@@ -26,7 +26,7 @@ matrix:
 before_install:
   - if [[ "$SNIFF" == "1" ]]; then export PHPCS_DIR=/tmp/phpcs; fi
   - if [[ "$SNIFF" == "1" ]]; then export SNIFFS_DIR=/tmp/sniffs; fi
-  - if [[ "$SNIFF" == "1" ]]; then export PHPCS=$PHPCS_DIR/bin/phpcs; fi
+  - if [[ "$SNIFF" == "1" ]]; then export PHPCS=$PHPCS_DIR/scripts/phpcs; fi
   # Install PHP CodeSniffer
   - if [[ "$SNIFF" == "1" ]]; then composer require "squizlabs/php_codesniffer:2.9.0"; fi
   - if [[ "$SNIFF" == "1" ]]; then git clone -b 2.9 --depth 1 https://github.com/squizlabs/PHP_CodeSniffer.git $PHPCS_DIR; fi
