@@ -32,12 +32,15 @@ pipelines:
           # - composer install
 
           # Install PHP Unit
-          - composer require phpunit/phpunit
+          - composer require "phpunit/phpunit:4.8.35"
 
           # Download PHP CodeSniffer and WP Coding Standards
           - composer require "squizlabs/php_codesniffer:2.9.0"
           #- git clone -b 2.9 --depth 1 https://github.com/squizlabs/PHP_CodeSniffer.git $PHPCS_DIR
           - git clone -b master --depth 1 https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards.git $SNIFFS_DIR
+
+          # Install composer packages
+          - composer install --no-interaction --no-progress --no-suggest
 
           # Set PHP CS standards
           - vendor/bin/phpcs --config-set installed_paths $SNIFFS_DIR
