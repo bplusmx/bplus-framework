@@ -9,4 +9,7 @@
  * @subpackage Bplus_Framework/modules
  */
 
+ /**
+  * Add cleanup header code.
+  */
 include 'cleanup.php';
