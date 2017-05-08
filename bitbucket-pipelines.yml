@@ -34,7 +34,7 @@ pipelines:
           # - composer install
 
           # Install PHP Unit
-          - composer require "phpunit/phpunit:5.7.20"
+          - composer require "phpunit/phpunit:5.7.9"
           #- composer require "phpunit/phpunit:4.0.1"
 
           # Download PHP CodeSniffer and WP Coding Standards
