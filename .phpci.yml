@@ -5,6 +5,12 @@ build_settings:
         - "bin"
 
 setup:
+    env:
+        APPLICATION_ENV: "development"
+        SLACK_API_URL: "https://hooks.slack.com/services/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"
+    mysql:
+        #- "DROP DATABASE IF EXISTS;"
+        #- CREATE DATABASE;
     shell:
         - "git clone https://github.com/luisabarca/wordpress-test-template.git wp-tests"
         - "bash wp-tests/bin/install-wp-tests.sh test root '' localhost latest"
