@@ -9,14 +9,15 @@ modules:
     enabled:
         - \Helper\Integration
         - WPLoader
+#        - WPDb
     config:
         WPLoader:
-            wpRootFolder: /Users/luisabarca/Dropbox/proyectos/wordpress-vvv/www/wordpress-trunk
+            wpRootFolder: /srv/www/wordpress-ci/public_html
             dbName: wordpress_integration_tests
             dbHost: localhost
-            dbUser: root
-            dbPassword: root
-            tablePrefix: int_wp_
+            dbUser: wp
+            dbPassword: wp
+            tablePrefix: wp_
             domain: ci.wordpress.dev
             adminEmail: admin@ci.wordpress.dev
             title: WP Tests
