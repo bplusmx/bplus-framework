@@ -9,19 +9,5 @@ modules:
     enabled:
         - \Helper\Acceptance
         - WPDb
-        - WPBrowser
-    config:
-        WPDb:
-            dsn: 'mysql:host=localhost;dbname=wordpress_integration_tests'
-            user: root
-            password: root
-            dump: tests/_data/dump.sql
-            populate: true
-            cleanup: true
-            url: 'http://ci.wordpress.dev/'
-            tablePrefix: wp_
-        WPBrowser:
-            url: 'http://ci.wordpress.dev/'
-            adminUsername: admin
-            adminPassword: password
-            adminPath: /wp-admin
+        - WPWebDriver
+        #- WPBrowser

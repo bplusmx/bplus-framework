@@ -1,0 +1,58 @@
+# behat.yml
+default:
+  extensions:
+    Behat\MinkExtension:
+      base_url: http://ci.wordpress.dev
+      default_session: selenium2
+      browser_name: 'chrome'
+      goutte: ~
+      selenium2:
+        wd_host: ci.wordpress.dev
+      show_cmd: "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome %s"
+
+    PaulGibbs\WordpressBehatExtension:
+      default_driver: wpcli
+      path: /Users/luisabarca/Dropbox/proyectos/wordpress-vvv/www/wordpress-ci/public_html
+
+      # User settings.
+      users:
+        admin:
+          username: admin
+          password: password
+        editor:
+          username: editor
+          password: editor
+        author:
+          username: author
+          password: author
+        contributor:
+          username: contributor
+          password: contributor
+        subscriber:
+          username: subscriber
+          password: subscriber
+
+      # WordPress settings.
+      site_url: ~
+      permalinks:
+        author_archive: author/%s/
+
+      # Driver settings.
+      wpcli:
+        #alias: dev
+        binary: wp
+
+  suites:
+    default:
+      contexts:
+        - FeatureContext:
+          - admin
+          - password
+          parameters:
+            wp_users:
+              admin:
+                'password'
+              luisabarca:
+                'password'
+
+

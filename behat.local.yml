@@ -1,0 +1,15 @@
+# Local configuration.
+default:
+  suites:
+    default:
+      contexts:
+        - FeatureContext:
+          - admin
+          - password
+
+parameters:
+  wp_users:
+    admin:
+      'password'
+    luisabarca:
+      'password'

@@ -8,3 +8,37 @@ settings:
     bootstrap: _bootstrap.php
     colors: true
     memory_limit: 1024M
+modules:
+    config:
+        WordPress:
+            depends: WPDb
+            #wpRootFolder: /srv/www/wordpress-ci/public_html
+            wpRootFolder: /Users/luisabarca/Dropbox/proyectos/wordpress-vvv/www/wordpress-ci/public_html
+            adminUsername: admin
+            adminPassword: password
+        WPBrowser:
+            #url: 'http://ci.wordpress.dev/'
+            url: 'http://wpci.dev/'
+            adminUsername: admin
+            adminPassword: password
+            adminPath: /wp-admin
+        WPDb:
+            dsn: 'mysql:host=localhost;dbname=wordpress_integration_tests'
+            user: wp
+            password: wp
+            dump: tests/_data/dump.sql
+            populate: true
+            cleanup: true
+            #url: 'http://ci.wordpress.dev/'
+            url: 'http://wpci.dev/'
+            tablePrefix: wp_
+        WPWebDriver:
+            url: 'http://wpci.dev/'
+            #url: 'http://ci.wordpress.dev/'
+            browser: chrome
+            port: 4444
+            restart: true
+            wait: 2
+            adminUsername: admin
+            adminPassword: password
+            adminUrl: /wp-admin
