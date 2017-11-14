@@ -23,6 +23,7 @@
 function no_generator() {
 	return '';
 }
+
 add_filter( 'the_generator', 'no_generator' );
 
 /*

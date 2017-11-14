@@ -30,6 +30,8 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+require plugin_dir_path( __FILE__ ) . 'modules/class-bplus-framework-utils.php';
+
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-bplus-framework-activator.php
