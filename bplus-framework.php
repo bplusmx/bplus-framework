@@ -30,14 +30,32 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-require plugin_dir_path( __FILE__ ) . 'modules/class-bplus-framework-utils.php';
+define( 'BPLUS_FRAMEWORK', 		'1.0.0' );
+define( 'BPLUS_FRAMEWORK_PATH', plugin_dir_path( __FILE__ ) );
+define( 'BPLUS_FRAMEWORK_URL', 	plugin_dir_url( __FILE__ ) );
+
+/*
+ini_set('display_startup_errors', 1);
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+// */
+
+// Table name with prefix.
+//define( 'BPLUS_FRAMEWORK_TABLE_STATS', $wpdb->prefix . 'bplus_fw_registrations' );
+
+include BPLUS_FRAMEWORK_PATH . 'vendor/autoload.php';
+
+require_once BPLUS_FRAMEWORK_PATH . 'modules/class-bplus-framework-utils.php';
+require_once BPLUS_FRAMEWORK_PATH . 'includes/class-bplus-framework-rest-auth.php';
+require_once BPLUS_FRAMEWORK_PATH . 'includes/class-bplus-framework-jwt.php';
+require_once BPLUS_FRAMEWORK_PATH . 'includes/class-bplus-framework-rest.php';
 
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-bplus-framework-activator.php
  */
 function activate_bplus_framework() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-bplus-framework-activator.php';
+	require_once BPLUS_FRAMEWORK_PATH . 'includes/class-bplus-framework-activator.php';
 	Bplus_Framework_Activator::activate();
 }
 
@@ -46,7 +64,7 @@ function activate_bplus_framework() {
  * This action is documented in includes/class-bplus-framework-deactivator.php
  */
 function deactivate_bplus_framework() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-bplus-framework-deactivator.php';
+	require_once BPLUS_FRAMEWORK_PATH . 'includes/class-bplus-framework-deactivator.php';
 	Bplus_Framework_Deactivator::deactivate();
 }
 
@@ -70,8 +88,11 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-bplus-framework.php';
  */
 function run_bplus_framework() {
 
+	add_action( 'rest_api_init', array( 'Bplus_Framework_Rest', 'rest_api_init' ), 15 );
+
 	$plugin = new Bplus_Framework();
 	$plugin->run();
 
 }
+
 run_bplus_framework();

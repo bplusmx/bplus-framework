@@ -50,7 +50,6 @@ class Bplus_Framework_Public {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-
 	}
 
 	/**
