@@ -9,7 +9,9 @@
         }
     ],
     "minimum-stability": "beta",
-    "require": {},
+    "require": {
+        "firebase/php-jwt": "^5.0"
+    },
     "require-dev": {
         "lucatume/wp-browser": "^1.19",
         "behat/behat": "^3.3",
