@@ -142,7 +142,7 @@ class Bplus_Framework_Utils {
 			'menu_position'         => 10,
 			'exclude_from_search' 	=> false,
 			'map_meta_cap'          => true,
-			'capability_type'       => array($cap_singular, $cap_plural),  // directorio, directorios
+			'capability_type'       => array( $cap_singular, $cap_plural ),  // directorio, directorios
             'capabilities'          => self::get_capabilities_for_post_type( $cap_singular, $cap_plural ),
 			'hierarchical'    		=> false,
 			'rewrite'         		=> array(
@@ -193,7 +193,7 @@ class Bplus_Framework_Utils {
 		$slug = $args['slug'];
 
 		// Pasamos objetos releacionados por el filtro.
-		$objects = apply_filters( 'bp-crm-taxonomy-objects', $args['objects'], $slug );
+		$objects = apply_filters( 'bp_taxonomy_objects', $args['objects'], $slug );
 
 		$singular = $args['singular'];
 
@@ -237,9 +237,16 @@ class Bplus_Framework_Utils {
 		);
 
 		$options = wp_parse_args( $options, $default_options );
-		$options = apply_filters( 'bp-crm-taxonomy-args', $options, $slug );
+		$options = apply_filters( 'bp_taxonomy_args', $options, $slug );
 
 		register_taxonomy( $slug, $objects, $options );
+	}
+
+	/**
+	 * 
+	 */
+	public static function add_role( $role, $display_name, $capabilities ) {
+		add_role( $role, $display_name, $capabilities );
 	}
 
 }
